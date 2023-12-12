@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -17,8 +18,14 @@ public class Server {
         // }
 
         /** send a word in html */
-        clientSocket.getOutputStream().write("<h2>Hello</h2>".getBytes());
+        // clientSocket.getOutputStream().write("<h2>Hello</h2>".getBytes());
 
+        /** send a message with OutputStreamWriter */
+        OutputStreamWriter writer = new OutputStreamWriter(clientSocket.getOutputStream());
+        writer.write("<h1>Java</h1>");
+        writer.flush();
+
+        writer.close();
         clientSocket.close();
         serverSocket.close();
     }
