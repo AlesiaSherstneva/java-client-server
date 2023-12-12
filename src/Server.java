@@ -13,7 +13,12 @@ public class Server {
             System.out.println("Client accepted " + ++client);
 
             OutputStreamWriter writer = new OutputStreamWriter(clientSocket.getOutputStream());
-            writer.write("<h1>Java</h1>");
+            writer.write(
+                    """
+                            HTTP/1.0 200 OK\r
+                            Content-type: text/html\r
+                            \r
+                            <h1>Java</h1>""");
             writer.flush();
 
             writer.close();
