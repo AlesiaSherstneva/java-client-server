@@ -3,30 +3,21 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-@SuppressWarnings("DanglingJavadoc")
 public class Server {
     public static void main(String[] args) throws IOException {
+        int client = 0;
         ServerSocket serverSocket = new ServerSocket(8000);
-        Socket clientSocket = serverSocket.accept();
 
-        /** send symbol '@' */
-        // clientSocket.getOutputStream().write(64);
+        while (true) {
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Client accepted " + ++client);
 
-        /** send numbers from 0 to 9 */
-        // for (int j = 48; j < 58; j++) {
-        //    clientSocket.getOutputStream().write(j);
-        // }
+            OutputStreamWriter writer = new OutputStreamWriter(clientSocket.getOutputStream());
+            writer.write("<h1>Java</h1>");
+            writer.flush();
 
-        /** send a word in html */
-        // clientSocket.getOutputStream().write("<h2>Hello</h2>".getBytes());
-
-        /** send a message with OutputStreamWriter */
-        OutputStreamWriter writer = new OutputStreamWriter(clientSocket.getOutputStream());
-        writer.write("<h1>Java</h1>");
-        writer.flush();
-
-        writer.close();
-        clientSocket.close();
-        serverSocket.close();
+            writer.close();
+            clientSocket.close();
+        }
     }
 }
