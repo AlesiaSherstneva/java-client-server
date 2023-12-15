@@ -11,14 +11,14 @@ public class Client {
         OutputStreamWriter writer = new OutputStreamWriter(clientSocket.getOutputStream());
         BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        writer.write("Get me some information");
+        writer.write("Get me some information\n");
         writer.flush();
 
-        String message = reader.readLine();
-        System.out.println(message);
+        String response = reader.readLine();
+        System.out.println(response);
 
-        writer.close();
         reader.close();
+        writer.close();
         clientSocket.close();
     }
 }
