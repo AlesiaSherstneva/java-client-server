@@ -10,6 +10,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         int count = 0;
         ServerSocket serverSocket = new ServerSocket(8000);
+        System.out.println("Server started");
 
         while (true) {
             Socket clientSocket = serverSocket.accept();
