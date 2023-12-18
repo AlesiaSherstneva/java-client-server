@@ -14,7 +14,7 @@ public class Client {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
         BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        int lowestNum = 1, highestNum = 1000, middleNum = (highestNum - lowestNum) / 2;
+        int lowestNum = 1, highestNum = 1000, middleNum = (highestNum + lowestNum) / 2;
 
         System.out.println(reader.readLine());
 
