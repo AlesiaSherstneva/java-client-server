@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -10,9 +11,19 @@ public class Phone {
     BufferedWriter writer;
 
     public Phone(String port) {
+        try {
+            server = new ServerSocket(Integer.parseInt(port));
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
     }
 
     public Phone(String ip, String port) {
+        try {
+            client = new Socket(ip, Integer.parseInt(port));
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
     }
 
     public void accept() {
