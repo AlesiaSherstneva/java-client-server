@@ -47,4 +47,15 @@ public class Socketor {
 
         phone.close();
     }
+
+    private int calculate(String operation, String a, String b) {
+        int intA = Integer.parseInt(a), intB = Integer.parseInt(b);
+        return switch (operation) {
+            case "+" -> intA + intB;
+            case "-" -> intA - intB;
+            case "*" -> intA * intB;
+            case "/" -> intA / intB;
+            default -> throw new IllegalArgumentException("Wrong operation, choose from \"+ - * /\"");
+        };
+    }
 }
