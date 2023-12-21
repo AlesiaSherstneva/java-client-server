@@ -1,4 +1,14 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class Phone {
+    ServerSocket server;
+    Socket client;
+    BufferedReader reader;
+    BufferedWriter writer;
+
     public Phone(String port) {
     }
 
