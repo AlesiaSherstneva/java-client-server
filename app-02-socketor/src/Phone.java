@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -21,6 +23,7 @@ public class Phone {
     public Phone(String ip, String port) {
         try {
             client = new Socket(ip, Integer.parseInt(port));
+            createStreams();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -29,6 +32,22 @@ public class Phone {
     public void accept() {
         try {
             client = server.accept();
+            createStreams();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void createStreams() {
+        try {
+            reader =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    client.getInputStream()));
+            writer =
+                    new BufferedWriter(
+                            new OutputStreamWriter(
+                                    client.getOutputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
