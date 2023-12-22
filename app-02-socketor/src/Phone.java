@@ -27,6 +27,11 @@ public class Phone {
     }
 
     public void accept() {
+        try {
+            client = server.accept();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String readLine() {
