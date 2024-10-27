@@ -16,7 +16,7 @@ public class Client {
 
         int lowestNum = 1, highestNum = 1000, middleNum = (highestNum + lowestNum) / 2;
 
-        System.out.println(reader.readLine());
+        System.out.printf("I receive a message:\n\"%s\"\n", reader.readLine());
 
         Thread.sleep(3000);
         System.out.println(middleNum);

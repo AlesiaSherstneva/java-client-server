@@ -18,7 +18,8 @@ public class Server {
         BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
         int serverNum = new Random().nextInt(1000) + 1;
-        System.out.println("My number is: " + serverNum);
+        System.out.printf("My number is: %s\nI want client to guess it\n", serverNum);
+        Thread.sleep(3000);
         writer.write("I thought of a number from 1 to 1000. Guess which one?");
         writer.newLine();
         writer.flush();
