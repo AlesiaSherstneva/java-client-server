@@ -40,12 +40,10 @@ public class Phone {
 
     private void createStreams() {
         try {
-            reader =
-                    new BufferedReader(
+            reader = new BufferedReader(
                             new InputStreamReader(
                                     client.getInputStream()));
-            writer =
-                    new BufferedWriter(
+            writer = new BufferedWriter(
                             new OutputStreamWriter(
                                     client.getOutputStream()));
         } catch (IOException e) {
