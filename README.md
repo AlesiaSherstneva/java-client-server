@@ -21,3 +21,7 @@
 на неверной позиции (коровы).
 
 ![demo-img](app-02-bulls-and-cows/demo-img.gif)
+
+## socketor
+
+Приложение Socketor (socket+calculator) - это клиент и сервер, два в одном флаконе :slightly_smiling_face:.
