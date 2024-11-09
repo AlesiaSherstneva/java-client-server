@@ -4,7 +4,7 @@ public class Socketor {
             System.out.println("""
                     Usage:
                     java Socketor server 8000 /
-                    java Socketor client 127.0.0.1 8000""");
+                    java Socketor client 127.0.0.1 8000 25 5""");
             return;
         }
 
