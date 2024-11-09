@@ -15,7 +15,7 @@ public class Socketor {
         } else if (args[0].equals("client")) {
             socketor.runClient(args[1], args[2], args[3], args[4]);
         } else {
-            throw new IllegalArgumentException("Wrong mode, enter server or client");
+            System.out.println("Wrong mode, enter server or client");
         }
     }
 
