@@ -11,6 +11,9 @@ public class Socketor {
         Socketor socketor = new Socketor();
 
         if (args[0].equals("server")) {
+            if (args[2].matches(".+\\.class")) {
+                args[2] = "*";
+            }
             socketor.runServer(args[1], args[2]);
         } else if (args[0].equals("client")) {
             socketor.runClient(args[1], args[2], args[3], args[4]);
@@ -23,13 +26,14 @@ public class Socketor {
         Phone phone = new Phone(port);
         System.out.printf("Started server with \"%s\" operation on %s port\n", operation, port);
 
+        //noinspection InfiniteLoopStatement
         while (true) {
             phone.accept();
 
             String a = phone.readLine();
             String b = phone.readLine();
             int result = calculate(operation, a, b);
-            String message = String.format("%s %s %s = %d", a, operation, b, result);
+            String message = String.format("%s %s %s = %d\n", a, operation, b, result);
             phone.writeLine(message);
             System.out.printf(message);
 
