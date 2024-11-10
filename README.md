@@ -24,6 +24,8 @@
 
 ## socketor
 
-Приложение Socketor (socket+calculator) - это клиент и сервер, два в одном флаконе :slightly_smiling_face:.
+Приложение Socketor (socket+calculator) - это клиент и сервер, два в одном флаконе. Немного странное 
+приложение :slightly_smiling_face: Класс Socketor можно запустить в режиме сервера или в режиме клиента.
+В режиме сервера требуется указать порт для запуска и один из видов операции (`+`, `-`, `*`, `/`).
 
 ![demo-img](app-03-socketor/demo-img.gif)
