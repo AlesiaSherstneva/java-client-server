@@ -25,3 +25,5 @@
 ## socketor
 
 Приложение Socketor (socket+calculator) - это клиент и сервер, два в одном флаконе :slightly_smiling_face:.
+
+![demo-img](app-03-socketor/demo-img.gif)
