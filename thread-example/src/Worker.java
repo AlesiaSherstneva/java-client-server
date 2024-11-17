@@ -5,7 +5,7 @@ public class Worker implements Runnable {
     public void run() {
         for (int j = 1; j < 100; j++) {
             count++;
-            System.out.printf("%d - %d", j, count);
+            System.out.printf("%d - %d\n", j, count);
         }
     }
 }
