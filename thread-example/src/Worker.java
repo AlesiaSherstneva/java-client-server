@@ -6,6 +6,11 @@ public class Worker implements Runnable {
         for (int j = 1; j < 100; j++) {
             count++;
             System.out.printf("%d - %d\n", j, count);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                break;
+            }
         }
     }
 }
