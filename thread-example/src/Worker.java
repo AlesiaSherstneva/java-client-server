@@ -3,8 +3,8 @@ public class Worker implements Runnable {
 
     @Override
     public void run() {
-        for (int j = 1; j < 100; j++) {
-            count++;
+        for (int j = 1; j <= 100; j++) {
+            next();
             System.out.printf("%d - %d\n", j, count);
             try {
                 Thread.sleep(10);
@@ -12,5 +12,9 @@ public class Worker implements Runnable {
                 break;
             }
         }
+    }
+
+    synchronized void next() {
+        count++;
     }
 }
