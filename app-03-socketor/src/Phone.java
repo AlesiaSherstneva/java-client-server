@@ -12,6 +12,10 @@ public class Phone {
     BufferedReader reader;
     BufferedWriter writer;
 
+    public Phone(ServerSocket server) {
+        this.server = server;
+    }
+
     public Phone(String port) {
         try {
             server = new ServerSocket(Integer.parseInt(port));
@@ -27,6 +31,10 @@ public class Phone {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+    }
+
+    public ServerSocket getServer() {
+        return server;
     }
 
     public void accept() {
