@@ -12,8 +12,8 @@ public class MultiPhone {
     BufferedReader reader;
     BufferedWriter writer;
 
-    public MultiPhone(ServerSocket server) {
-        this.server = server;
+    public MultiPhone(MultiPhone phone) {
+        this.server = phone.server;
     }
 
     public MultiPhone(String port) {
@@ -31,10 +31,6 @@ public class MultiPhone {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }
-
-    public ServerSocket getServer() {
-        return server;
     }
 
     public void accept() {
