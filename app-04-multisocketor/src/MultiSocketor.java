@@ -26,6 +26,7 @@ public class MultiSocketor {
     private void runServer(String port, String threadsCount, String operation) {
         int threads = Integer.parseInt(threadsCount);
         MultiPhone[] phone = new MultiPhone[threads];
+        phone[0] = new MultiPhone(port);
         System.out.printf("Started server with \"%s\" operation on %s port\n", operation, port);
 
         while (true) {
