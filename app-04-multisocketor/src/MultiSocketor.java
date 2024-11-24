@@ -25,12 +25,10 @@ public class MultiSocketor {
     @SuppressWarnings("BusyWait")
     private void runServer(String port, String threadsCount, String operation) {
         int threads = Integer.parseInt(threadsCount);
-        MultiPhone[] phone = new MultiPhone[threads];
-        phone[0] = new MultiPhone(port);
+        MultiPhone phone = new MultiPhone(port);
         for (int j = 1; j < threads; j++) {
-            phone[j] = new MultiPhone(phone[0]);
+            new Thread(new ServerPhone(new MultiPhone(phone))).start();
         }
-        System.out.printf("Started server with \"%s\" operation on %s port\n", operation, port);
 
         while (true) {
             phone.accept();
