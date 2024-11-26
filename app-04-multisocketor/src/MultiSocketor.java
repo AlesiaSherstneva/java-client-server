@@ -22,32 +22,11 @@ public class MultiSocketor {
         }
     }
 
-    @SuppressWarnings("BusyWait")
     private void runServer(String port, String threadsCount, String operation) {
         int threads = Integer.parseInt(threadsCount);
         MultiPhone phone = new MultiPhone(port);
         for (int j = 1; j < threads; j++) {
-            new Thread(new ServerPhone(new MultiPhone(phone))).start();
-        }
-
-        while (true) {
-            phone.accept();
-
-            String a = phone.readLine();
-            String b = phone.readLine();
-            int result = calculate(operation, a, b);
-            String message = String.format("%s %s %s = %d\n", a, operation, b, result);
-
-            try {
-                Thread.sleep(7000);
-            } catch (InterruptedException e) {
-                break;
-            }
-
-            phone.writeLine(message);
-            System.out.printf(message);
-
-            phone.close();
+            new Thread(new ServerPhone(new MultiPhone(phone), operation)).start();
         }
     }
 
@@ -60,16 +39,5 @@ public class MultiSocketor {
         System.out.println(answer);
 
         phone.close();
-    }
-
-    private int calculate(String operation, String a, String b) {
-        int intA = Integer.parseInt(a), intB = Integer.parseInt(b);
-        return switch (operation) {
-            case "+" -> intA + intB;
-            case "-" -> intA - intB;
-            case "*" -> intA * intB;
-            case "/" -> intA / intB;
-            default -> throw new IllegalArgumentException("Wrong operation, choose one of \"+ - * /\"");
-        };
     }
 }
