@@ -11,6 +11,7 @@ public class ServerPhone implements Runnable {
     @SuppressWarnings("BusyWait")
     public void run() {
         while (true) {
+            System.out.println("Waiting for a client...");
             phone.accept();
 
             String a = phone.readLine();
