@@ -3,8 +3,8 @@ public class MultiSocketor {
         if (args.length < 3) {
             System.out.println("""
                     Usage:
-                    java Socketor server 8000 2 /
-                    java Socketor client 127.0.0.1 8000 25 5""");
+                    java MultiSocketor server 8000 2 /
+                    java MultiSocketor client 127.0.0.1 8000 25 5""");
             return;
         }
 
@@ -25,6 +25,7 @@ public class MultiSocketor {
     private void runServer(String port, String threadsCount, String operation) {
         int threads = Integer.parseInt(threadsCount);
         MultiPhone phone = new MultiPhone(port);
+        System.out.printf("Started server with \"%s\" operation on %s port\n", operation, port);
         for (int j = 1; j < threads; j++) {
             new Thread(new ServerPhone(new MultiPhone(phone), operation)).start();
         }
