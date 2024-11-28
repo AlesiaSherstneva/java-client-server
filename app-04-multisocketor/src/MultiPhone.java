@@ -7,14 +7,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class MultiPhone {
-    ServerSocket server;
-    Socket client;
-    BufferedReader reader;
-    BufferedWriter writer;
-
-    public MultiPhone(MultiPhone phone) {
-        this.server = phone.server;
-    }
+    private ServerSocket server;
+    private Socket client;
+    private BufferedReader reader;
+    private BufferedWriter writer;
 
     public MultiPhone(String port) {
         try {
@@ -22,6 +18,11 @@ public class MultiPhone {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+    }
+
+    public MultiPhone(MultiPhone phoneServer) {
+        this.server = phoneServer.server;
+        accept();
     }
 
     public MultiPhone(String ip, String port) {
@@ -33,7 +34,7 @@ public class MultiPhone {
         }
     }
 
-    public void accept() {
+    private void accept() {
         try {
             client = server.accept();
             createStreams();
@@ -45,11 +46,11 @@ public class MultiPhone {
     private void createStreams() {
         try {
             reader = new BufferedReader(
-                            new InputStreamReader(
-                                    client.getInputStream()));
+                    new InputStreamReader(
+                            client.getInputStream()));
             writer = new BufferedWriter(
-                            new OutputStreamWriter(
-                                    client.getOutputStream()));
+                    new OutputStreamWriter(
+                            client.getOutputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

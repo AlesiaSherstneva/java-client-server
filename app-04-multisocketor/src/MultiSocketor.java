@@ -3,7 +3,7 @@ public class MultiSocketor {
         if (args.length < 3) {
             System.out.println("""
                     Usage:
-                    java MultiSocketor server 8000 2 /
+                    java MultiSocketor server 8000 /
                     java MultiSocketor client 127.0.0.1 8000 25 5""");
             return;
         }
@@ -14,7 +14,7 @@ public class MultiSocketor {
             if (args[2].matches(".+\\.class")) {
                 args[2] = "*";
             }
-            socketor.runServer(args[1], args[2], args[3]);
+            socketor.runServer(args[1], args[2]);
         } else if (args[0].equals("client")) {
             socketor.runClient(args[1], args[2], args[3], args[4]);
         } else {
@@ -22,13 +22,41 @@ public class MultiSocketor {
         }
     }
 
-    private void runServer(String port, String threadsCount, String operation) {
-        int threads = Integer.parseInt(threadsCount);
-        MultiPhone phone = new MultiPhone(port);
+    private void runServer(String port, String operation) {
+        MultiPhone phoneServer = new MultiPhone(port);
         System.out.printf("Started server with \"%s\" operation on %s port\n", operation, port);
-        for (int j = 1; j < threads; j++) {
-            new Thread(new ServerPhone(new MultiPhone(phone), operation)).start();
+        while (true) {
+            MultiPhone phone = new MultiPhone(phoneServer);
+            System.out.println("Client accepted");
+            new Thread(() -> {
+                String a = phone.readLine();
+                String b = phone.readLine();
+                int result = calculate(operation, a, b);
+                String message = String.format("%s %s %s = %d\n", a, operation, b, result);
+
+                try {
+                    Thread.sleep(7000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                phone.writeLine(message);
+                System.out.printf(message);
+
+                phone.close();
+            }).start();
         }
+    }
+
+    private int calculate(String operation, String a, String b) {
+        int intA = Integer.parseInt(a), intB = Integer.parseInt(b);
+        return switch (operation) {
+            case "+" -> intA + intB;
+            case "-" -> intA - intB;
+            case "*" -> intA * intB;
+            case "/" -> intA / intB;
+            default -> throw new IllegalArgumentException("Wrong operation, choose one of \"+ - * /\"");
+        };
     }
 
     private void runClient(String ip, String port, String a, String b) {
