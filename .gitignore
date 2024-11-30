@@ -1,5 +1,12 @@
 /.idea/
 /*/.idea/
-/out/
-/*/out/
+
+!/out/
+/out/*
+!/out/production/
+/out/production/*
+!/out/production/java-client-server
+/out/production/java-client-server/*
+!/out/production/java-client-server/client.bat
+
 *.iml
