@@ -21,8 +21,9 @@ public class MultiPhone {
     }
 
     public MultiPhone(MultiPhone phoneServer) {
-        this.server = phoneServer.server;
-        accept();
+        server = null;
+        this.client = phoneServer.accept();
+        createStreams();
     }
 
     public MultiPhone(String ip, String port) {
@@ -34,12 +35,11 @@ public class MultiPhone {
         }
     }
 
-    private void accept() {
+    private Socket accept() {
         try {
-            client = server.accept();
-            createStreams();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            return server.accept();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
         }
     }
 
@@ -51,16 +51,16 @@ public class MultiPhone {
             writer = new BufferedWriter(
                     new OutputStreamWriter(
                             client.getOutputStream()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
         }
     }
 
     public String readLine() {
         try {
             return reader.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
         }
     }
 
@@ -69,8 +69,8 @@ public class MultiPhone {
             writer.write(message);
             writer.newLine();
             writer.flush();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
         }
     }
 
@@ -79,9 +79,8 @@ public class MultiPhone {
             reader.close();
             writer.close();
             client.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
         }
-
     }
 }
