@@ -25,7 +25,8 @@ public class MultiSocketor {
     private void runServer(String port, String operation) {
         MultiPhone phoneServer = new MultiPhone(port);
         System.out.printf("Started server with \"%s\" operation on %s port\n", operation, port);
-        while (true) {
+
+        do {
             MultiPhone phone = new MultiPhone(phoneServer);
             System.out.println("Client accepted");
             new Thread(() -> {
@@ -45,7 +46,9 @@ public class MultiSocketor {
 
                 phone.close();
             }).start();
-        }
+        } while (Math.random() != 0);
+
+        phoneServer.closeServer();
     }
 
     private int calculate(String operation, String a, String b) {

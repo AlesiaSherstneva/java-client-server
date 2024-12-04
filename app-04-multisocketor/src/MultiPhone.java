@@ -83,4 +83,12 @@ public class MultiPhone {
             throw new RuntimeException(exception);
         }
     }
+
+    public void closeServer() {
+        try {
+            server.close();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
 }
