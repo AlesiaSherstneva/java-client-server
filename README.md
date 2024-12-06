@@ -64,3 +64,5 @@ Socketor можно запустить в режиме сервера или в 
 - запустить приложение в среде разработки;
 - выполнить команду `build`/`rebuild` в панели быстрого доступа среды разработки;
 - выполнить команду `javac MultiSocketor.java -d ../../out/production/java-client-server` в командной строке.
+
+![demo-img](app-04-multisocketor/demo-img.gif)
