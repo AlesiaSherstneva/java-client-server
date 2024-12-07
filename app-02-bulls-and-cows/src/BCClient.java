@@ -54,13 +54,10 @@ public class BCClient {
             }
 
             String[] digits = request.split("");
-            if (bulls + cows == 0) {
+            if (bulls == 0 || cows == 4) {
                 removeNumsWithWrongPositions(numsVars, digits);
             } else if (bulls + cows == 4) {
                 removeNumsWithWrongSetOfDigits(numsVars, digits);
-                if (cows == 4) {
-                    removeNumsWithWrongPositions(numsVars, digits);
-                }
             } else if (bulls + cows > 0) {
                 removeNumsWithWrongSingleDigits(numsVars, digits);
             }
